@@ -1,4 +1,3 @@
-
 import { UserPlus, Mail, Users, BookOpen, Building, Linkedin, Instagram, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
@@ -25,16 +24,16 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-createu-beige">
-      {/* Floating Navbar */}
+      {/* Floating Navbar - Updated with mobile responsiveness */}
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl bg-white/90 backdrop-blur-md z-50 rounded-full shadow-lg">
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <img 
               src="/lovable-uploads/8d7791d1-0b23-450a-b4db-6770d9a554a5.png" 
               alt="CreateU Logo" 
-              className="h-10 hover:scale-105 transition-transform"
+              className="h-10 hover:scale-105 transition-transform md:block hidden"
             />
-            <div className="flex gap-8">
+            <div className="flex gap-4 md:gap-8 w-full md:w-auto justify-center md:justify-end">
               <a href="#vision" className="text-createu-black hover:text-createu-orange transition-all hover:scale-105">Vision</a>
               <a href="#activities" className="text-createu-black hover:text-createu-orange transition-all hover:scale-105">Activities</a>
               <a href="#contact" className="text-createu-black hover:text-createu-orange transition-all hover:scale-105">Contact</a>
