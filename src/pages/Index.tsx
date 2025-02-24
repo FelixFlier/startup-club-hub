@@ -140,7 +140,7 @@ const Index = () => {
   ];
 
   return (
-    <div className={`min-h-screen bg-createu-beige relative ${theme === 'dark' ? 'dark bg-dark-background text-dark-foreground' : ''}`}>
+    <div className="min-h-screen bg-background text-foreground">
       <button
         onClick={scrollToTop}
         className={`fixed bottom-8 right-8 bg-createu-orange text-white p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 z-50 ${
@@ -150,26 +150,26 @@ const Index = () => {
         <ArrowUp size={24} />
       </button>
 
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl bg-white/90 backdrop-blur-md z-50 rounded-full shadow-lg dark:bg-dark-card/90 dark:shadow-gray-700">
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl glass-effect z-50 rounded-full shadow-lg">
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <div className="flex gap-4 md:gap-8 w-full justify-center">
-              <a href="#vision" className="text-createu-black hover:text-createu-orange transition-all hover:scale-105 dark:text-dark-foreground dark:hover:text-createu-orange">Vision</a>
-              <a href="#activities" className="text-createu-black hover:text-createu-orange transition-all hover:scale-105 dark:text-dark-foreground dark:hover:text-createu-orange">Activities</a>
-              <a href="#contact" className="text-createu-black hover:text-createu-orange transition-all hover:scale-105 dark:text-dark-foreground dark:hover:text-createu-orange">Contact</a>
+              <a href="#vision" className="text-foreground hover:text-createu-orange transition-all hover:scale-105">Vision</a>
+              <a href="#activities" className="text-foreground hover:text-createu-orange transition-all hover:scale-105">Activities</a>
+              <a href="#contact" className="text-foreground hover:text-createu-orange transition-all hover:scale-105">Contact</a>
             </div>
             <div className="flex items-center space-x-4 ml-4">
               <button
                 onClick={toggleLanguage}
-                className="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-sm text-createu-black dark:text-dark-foreground"
+                className="px-3 py-2 rounded-md hover:bg-accent transition-colors text-sm text-foreground"
               >
                 {language === "en" ? "EN" : "SV"}
               </button>
               <button
                 onClick={toggleTheme}
-                className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="p-2 rounded-md hover:bg-accent transition-colors text-foreground"
               >
-                {theme === "light" ? <Moon size={20} className="text-createu-black dark:text-dark-foreground" /> : <Sun size={20} className="text-createu-black dark:text-dark-foreground" />}
+                {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
               </button>
             </div>
           </div>
@@ -178,11 +178,11 @@ const Index = () => {
 
       <section className="pt-32 pb-20 px-4">
         <div className="container mx-auto text-center animate-fade-in">
-          <h1 className="text-5xl font-bold text-createu-black mb-6 font-montserrat dark:text-dark-foreground">
-            Welcome to <span className="font-extrabold text-5xl text-createu-black dark:text-dark-foreground"><span className="text-createu-black dark:text-dark-foreground">CREATE</span><span className="text-createu-orange">U</span></span>
-            <div className="text-createu-black text-lg mt-1 font-hind-hunter dark:text-dark-foreground">Uppsala</div>
+          <h1 className="text-5xl font-bold mb-6 font-montserrat">
+            Welcome to <span className="font-extrabold text-5xl">CREATE<span className="text-createu-orange">U</span></span>
+            <div className="text-lg mt-1 font-hind-hunter">Uppsala</div>
           </h1>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto mb-8 dark:text-gray-300">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             We support innovative minds and promote entrepreneurial thinking in the university city of Uppsala.
           </p>
           <button className="bg-createu-orange text-white px-8 py-3 rounded-lg hover:scale-105 hover:shadow-lg transition-all flex items-center gap-2 mx-auto">
@@ -192,14 +192,14 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="vision" className="py-20 bg-white dark:bg-dark-card">
+      <section id="vision" className="py-20 bg-card">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-createu-black mb-8 font-montserrat dark:text-dark-foreground">Our Vision</h2>
+            <h2 className="text-3xl font-bold mb-8 font-montserrat text-card-foreground">Our Vision</h2>
             <div className="flex items-center justify-center mb-8">
               <BookOpen size={40} className="text-createu-orange" />
             </div>
-            <p className="text-lg text-gray-700 leading-relaxed dark:text-gray-300">
+            <p className="text-lg text-muted-foreground leading-relaxed">
               CreateU Uppsala strives to be the leading platform for student entrepreneurs and innovative thinkers.
               We create an ecosystem that connects inspiration, knowledge, and networks.
             </p>
@@ -209,7 +209,7 @@ const Index = () => {
 
       <section id="activities" className="py-20 px-4">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-createu-black mb-12 font-montserrat dark:text-dark-foreground">Our Activities</h2>
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Our Activities</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -231,7 +231,7 @@ const Index = () => {
               <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br from-white to-createu-beige transition-all duration-300 dark:bg-dark-card dark:hover:bg-gradient-to-br dark:hover:from-dark-card dark:hover:to-dark-muted dark:shadow-gray-700">
                 <div className="flex items-center gap-3 mb-4">
                   {activity.icon}
-                  <h3 className="text-xl font-semibold text-createu-black font-montserrat dark:text-dark-foreground">{activity.title}</h3>
+                  <h3 className="text-xl font-semibold text-foreground font-montserrat dark:text-dark-foreground">{activity.title}</h3>
                 </div>
                 <p className="text-gray-700 dark:text-gray-300">{activity.description}</p>
               </div>
@@ -242,7 +242,7 @@ const Index = () => {
 
       <section id="contact" className="py-20 bg-white dark:bg-dark-card">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-createu-black mb-12 font-montserrat dark:text-dark-foreground">Contact</h2>
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Contact</h2>
           <div className="max-w-lg mx-auto">
             <div className="bg-createu-beige p-8 rounded-lg dark:bg-dark-muted">
               <div className="flex items-center gap-3 mb-6">
@@ -266,7 +266,7 @@ const Index = () => {
 
       <section className="py-20 bg-white dark:bg-dark-card">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-createu-black mb-12 font-montserrat dark:text-dark-foreground">Upcoming Events</h2>
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Upcoming Events</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {upcomingEvents.map((event, index) => (
               <div key={index} className="bg-createu-beige p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-dark-muted dark:shadow-gray-700">
@@ -288,7 +288,7 @@ const Index = () => {
 
       <section className="py-20 bg-white dark:bg-dark-card">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-createu-black mb-12 font-montserrat dark:text-dark-foreground">Join Our Team</h2>
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Join Our Team</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {openPositions.map((position, index) => (
               <div key={index} className="bg-createu-beige p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-dark-muted dark:shadow-gray-700">
@@ -314,7 +314,7 @@ const Index = () => {
 
       <section className="py-20 bg-white dark:bg-dark-card">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-createu-black mb-12 font-montserrat dark:text-dark-foreground">Our Partners</h2>
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Our Partners</h2>
           <div className="grid md:grid-cols-3 gap-8 items-center">
             {partners.map((partner, index) => (
               <a
@@ -337,14 +337,14 @@ const Index = () => {
 
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-3xl">
-          <h2 className="text-3xl font-bold text-center text-createu-black mb-12 font-montserrat dark:text-dark-foreground">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Frequently Asked Questions</h2>
           <div className="space-y-6">
             {faqItems.map((item, index) => (
               <div
                 key={index}
                 className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all dark:bg-dark-card dark:shadow-gray-700"
               >
-                <h3 className="text-xl font-semibold mb-3 text-createu-black font-montserrat dark:text-dark-foreground">{item.question}</h3>
+                <h3 className="text-xl font-semibold mb-3 text-foreground font-montserrat dark:text-dark-foreground">{item.question}</h3>
                 <p className="text-gray-700 dark:text-gray-300">{item.answer}</p>
               </div>
             ))}
@@ -354,7 +354,7 @@ const Index = () => {
 
       <section className="py-20 bg-white dark:bg-dark-card">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-createu-black mb-12 font-montserrat dark:text-dark-foreground">Latest News</h2>
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Latest News</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {blogPosts.map((post, index) => (
               <div key={index} className="bg-createu-beige p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-dark-muted dark:shadow-gray-700">
@@ -368,11 +368,11 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="bg-gray-100 text-gray-800 py-16 dark:bg-dark-background dark:text-gray-300">
+      <footer className="bg-card text-card-foreground py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-12">
             <div>
-              <h3 className="text-2xl font-bold mb-6 font-montserrat dark:text-dark-foreground">Stay Connected</h3>
+              <h3 className="text-2xl font-bold mb-6 font-montserrat">Stay Connected</h3>
               <p className="text-gray-600 mb-4 dark:text-gray-400">
                 Stay up to date with our latest updates and exclusive offers.
               </p>
@@ -390,7 +390,7 @@ const Index = () => {
               </form>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4 font-montserrat dark:text-dark-foreground">Partners</h3>
+              <h3 className="text-xl font-semibold mb-4 font-montserrat">Partners</h3>
               <ul className="space-y-2">
                 <li><a href="#Partner 1" className="text-gray-600 hover:text-createu-orange transition-colors dark:text-gray-400 dark:hover:text-createu-orange">Partner 1</a></li>
                 <li><a href="#Partner 2" className="text-gray-600 hover:text-createu-orange transition-colors dark:text-gray-400 dark:hover:text-createu-orange">Partner 2</a></li>
@@ -398,7 +398,7 @@ const Index = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4 font-montserrat dark:text-dark-foreground">Contact</h3>
+              <h3 className="text-xl font-semibold mb-4 font-montserrat">Contact</h3>
               <p className="text-gray-600 dark:text-gray-400">
                 Email: info@createu-uppsala.se<br />
                 Address: Uppsala University<br />
@@ -406,7 +406,7 @@ const Index = () => {
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4 font-montserrat dark:text-dark-foreground">Follow Us</h3>
+              <h3 className="text-xl font-semibold mb-4 font-montserrat">Follow Us</h3>
               <div className="flex gap-4">
                 <a href="#" className="text-gray-600 hover:text-createu-orange hover:scale-110 transition-all dark:text-gray-400 dark:hover:text-createu-orange">
                   <Instagram size={24} />

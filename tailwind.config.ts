@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -23,13 +24,6 @@ export default {
           beige: "#ebe1c6",
           orange: "#df6022",
           black: "#201714",
-
-          // Dark Mode Farbvarianten:
-          'dark-background': '#121212',
-          'dark-foreground': '#F0F0F0',
-          'dark-card': '#1E1E1E',
-          'dark-muted': '#282828',
-          'dark-accent': '#292929',
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
