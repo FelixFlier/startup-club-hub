@@ -153,12 +153,7 @@ const Index = () => {
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl bg-white/90 backdrop-blur-md z-50 rounded-full shadow-lg dark:bg-dark-card/90 dark:shadow-gray-700">
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
-            <img
-              src="/lovable-uploads/8d7791d1-0b23-450a-b4db-6770d9a554a5.png"
-              alt="CreateU Logo"
-              className="h-10 hover:scale-105 transition-transform md:block hidden"
-            />
-            <div className="flex gap-4 md:gap-8 w-full md:w-auto justify-center md:justify-end">
+            <div className="flex gap-4 md:gap-8 w-full justify-center">
               <a href="#vision" className="text-createu-black hover:text-createu-orange transition-all hover:scale-105 dark:text-dark-foreground dark:hover:text-createu-orange">Vision</a>
               <a href="#activities" className="text-createu-black hover:text-createu-orange transition-all hover:scale-105 dark:text-dark-foreground dark:hover:text-createu-orange">Activities</a>
               <a href="#contact" className="text-createu-black hover:text-createu-orange transition-all hover:scale-105 dark:text-dark-foreground dark:hover:text-createu-orange">Contact</a>
@@ -183,11 +178,6 @@ const Index = () => {
 
       <section className="pt-32 pb-20 px-4">
         <div className="container mx-auto text-center animate-fade-in">
-          <img
-            src="/lovable-uploads/8d7791d1-0b23-450a-b4db-6770d9a554a5.png"
-            alt="CreateU Logo Large"
-            className="h-24 mx-auto mb-8 animate-fade-in"
-          />
           <h1 className="text-5xl font-bold text-createu-black mb-6 font-montserrat dark:text-dark-foreground">
             Welcome to <span className="font-extrabold text-5xl text-createu-black dark:text-dark-foreground"><span className="text-createu-black dark:text-dark-foreground">CREATE</span><span className="text-createu-orange">U</span></span>
             <div className="text-createu-black text-lg mt-1 font-hind-hunter dark:text-dark-foreground">Uppsala</div>
@@ -322,8 +312,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-3xl">
+      <section className="py-20 bg-white dark:bg-dark-card">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-createu-black mb-12 font-montserrat dark:text-dark-foreground">Our Partners</h2>
           <div className="grid md:grid-cols-3 gap-8 items-center">
             {partners.map((partner, index) => (
@@ -346,7 +336,7 @@ const Index = () => {
       </section>
 
       <section className="py-20 px-4">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold text-center text-createu-black mb-12 font-montserrat dark:text-dark-foreground">Frequently Asked Questions</h2>
           <div className="space-y-6">
             {faqItems.map((item, index) => (
