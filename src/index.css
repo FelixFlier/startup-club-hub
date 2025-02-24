@@ -1,5 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Hind+Hunter:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,26 +7,49 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --background: 0 0% 100%;        /* Light Mode Background */
+    --foreground: 222.2 84% 4.9%;     /* Light Mode Foreground */
+    --card: 0 0% 100%;              /* Light Mode Card Background */
+    --card-foreground: 222.2 84% 4.9%; /* Light Mode Card Foreground */
+    --popover: 0 0% 100%;           /* Light Mode Popover Background */
+    --popover-foreground: 222.2 84% 4.9%; /* Light Mode Popover Foreground */
+    --primary: 222.2 47.4% 11.2%;     /* Light Mode Primary */
+    --primary-foreground: 210 40% 98%;  /* Light Mode Primary Foreground */
+    --secondary: 210 40% 96.1%;       /* Light Mode Secondary */
+    --secondary-foreground: 222.2 47.4% 11.2%; /* Light Mode Secondary Foreground */
+    --muted: 210 40% 96.1%;         /* Light Mode Muted */
+    --muted-foreground: 215.4 16.3% 46.9%; /* Light Mode Muted Foreground */
+    --accent: 210 40% 96.1%;        /* Light Mode Accent */
+    --accent-foreground: 222.2 47.4% 11.2%; /* Light Mode Accent Foreground */
+    --destructive: 0 84.2% 60.2%;      /* Light Mode Destructive */
+    --destructive-foreground: 210 40% 98%; /* Light Mode Destructive Foreground */
+    --border: 214.3 31.8% 91.4%;       /* Light Mode Border */
+    --input: 214.3 31.8% 91.4%;        /* Light Mode Input */
+    --ring: 222.2 84% 4.9%;          /* Light Mode Ring */
     --radius: 0.5rem;
+  }
+
+  /* 💡 Dark Mode CSS Variable Overrides - ADD THIS SECTION */
+  .dark {
+    --background: 222.2 84% 4.9%;     /* Dark Mode Background - Darker value */
+    --foreground: 210 40% 98%;      /* Dark Mode Foreground - Lighter value */
+    --card: 222.2 84% 4.9%;          /* Dark Mode Card Background - Darker value */
+    --card-foreground: 210 40% 98%;   /* Dark Mode Card Foreground - Lighter value */
+    --popover: 222.2 84% 4.9%;        /* Dark Mode Popover Background - Darker value */
+    --popover-foreground: 210 40% 98%; /* Dark Mode Popover Foreground - Lighter value */
+    --primary: 210 40% 98%;         /* Dark Mode Primary - Lighter value (or adjust as needed) */
+    --primary-foreground: 222.2 47.4% 11.2%; /* Dark Mode Primary Foreground - Darker value */
+    --secondary: 222.2 84% 4.9%;       /* Dark Mode Secondary - Darker value */
+    --secondary-foreground: 210 40% 98%; /* Dark Mode Secondary Foreground - Lighter value */
+    --muted: 222.2 84% 4.9%;         /* Dark Mode Muted - Darker value */
+    --muted-foreground: 210 40% 98%;  /* Dark Mode Muted Foreground - Lighter value */
+    --accent: 222.2 84% 4.9%;        /* Dark Mode Accent - Darker value */
+    --accent-foreground: 210 40% 98%; /* Dark Mode Accent Foreground - Lighter value */
+    --destructive: 0 84.2% 60.2%;      /* Dark Mode Destructive - Keep or adjust */
+    --destructive-foreground: 210 40% 98%; /* Dark Mode Destructive Foreground - Keep or adjust */
+    --border: 219.5 15.7% 83.9%;       /* Dark Mode Border - Lighter value */
+    --input: 219.5 15.7% 83.9%;        /* Dark Mode Input - Lighter value */
+    --ring: 217.2 32.6% 17.5%;         /* Dark Mode Ring - Adjust for visibility */
   }
 
   html {

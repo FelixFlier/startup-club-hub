@@ -21,9 +21,16 @@ export default {
     extend: {
       colors: {
         createu: {
-          beige: "#F5E6D3",
-          orange: "#E56B1F",
-          black: "#000000",
+          beige: "#ebe1c6",
+          orange: "#df6022",
+          black: "#201714",
+
+          // Dark Mode Farbvarianten:
+        'dark-background': '#121212', // Dunkelgrauer Hintergrund für Dark Mode
+        'dark-foreground': '#F0F0F0', // Heller Text für Dark Mode
+        'dark-card': '#1E1E1E', // Dunklere Karten im Dark Mode
+        'dark-muted': '#282828', // Gedämpfte Farbe im Dark Mode
+        'dark-accent': '#292929', // Akzentfarbe im Dark Mode (etwas dunkleres Grau)
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -60,7 +67,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+          'hind': ['Hind', 'sans-serif'],
+          'montserrat': ['Montserrat', 'sans-serif'],
+          'hind-hunter': ['Hind Hunter', 'sans-serif'],
       },
       animation: {
         "fade-in": "fade-in 0.5s ease-out",
