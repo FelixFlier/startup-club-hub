@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -26,11 +25,11 @@ export default {
           black: "#201714",
 
           // Dark Mode Farbvarianten:
-        'dark-background': '#121212', // Dunkelgrauer Hintergrund für Dark Mode
-        'dark-foreground': '#F0F0F0', // Heller Text für Dark Mode
-        'dark-card': '#1E1E1E', // Dunklere Karten im Dark Mode
-        'dark-muted': '#282828', // Gedämpfte Farbe im Dark Mode
-        'dark-accent': '#292929', // Akzentfarbe im Dark Mode (etwas dunkleres Grau)
+          'dark-background': '#121212',
+          'dark-foreground': '#F0F0F0',
+          'dark-card': '#1E1E1E',
+          'dark-muted': '#282828',
+          'dark-accent': '#292929',
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
