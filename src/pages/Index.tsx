@@ -192,7 +192,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="vision" className="py-20 bg-secondary">
+      <section id="vision" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8 font-montserrat text-foreground">Our Vision</h2>
@@ -228,7 +228,7 @@ const Index = () => {
                 description: "Regular meetings for exchange and networking."
               }
             ].map((activity, index) => (
-              <div key={index} className="bg-secondary p-6 rounded-lg shadow-md hover:shadow-xl transition-all dark:hover:bg-accent">
+              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl transition-all dark:bg-secondary">
                 <div className="flex items-center gap-3 mb-4">
                   {activity.icon}
                   <h3 className="text-xl font-semibold text-foreground font-montserrat">{activity.title}</h3>
@@ -240,11 +240,11 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-20 bg-secondary">
+      <section id="contact" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Contact</h2>
           <div className="max-w-lg mx-auto">
-            <div className="bg-background p-8 rounded-lg dark:bg-accent">
+            <div className="bg-card p-8 rounded-lg dark:bg-secondary">
               <div className="flex items-center gap-3 mb-6">
                 <Building size={24} className="text-createu-orange" />
                 <h3 className="text-xl font-semibold font-montserrat text-foreground">For Companies</h3>
@@ -269,7 +269,7 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Join Our Team</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {openPositions.map((position, index) => (
-              <div key={index} className="bg-secondary p-6 rounded-lg shadow-md hover:shadow-xl transition-all dark:hover:bg-accent">
+              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl transition-all dark:bg-secondary">
                 <h3 className="text-xl font-bold mb-2 text-foreground">{position.title}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{position.type}</p>
                 <p className="text-muted-foreground mb-4">{position.description}</p>
@@ -300,7 +300,7 @@ const Index = () => {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-background p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center dark:bg-accent"
+                className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center dark:bg-secondary"
               >
                 <img
                   src={partner.logo}
@@ -335,8 +335,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-20 px-4 bg-background">
+        <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Latest News</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {blogPosts.map((post, index) => (
@@ -351,7 +351,7 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="bg-secondary text-foreground py-16">
+      <footer className="bg-background text-foreground py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-12">
             <div>
