@@ -8,7 +8,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;  /* white background for sections */
+    --background: 39 24% 84%;  /* beige background */
     --foreground: 222.2 84% 4.9%;
     --card: 39 24% 84%;  /* beige cards */
     --card-foreground: 222.2 84% 4.9%;
@@ -56,5 +56,9 @@
 @layer utilities {
   .glass-effect {
     @apply backdrop-blur-md bg-white/80 dark:bg-black/20;
+  }
+  
+  .bg-white-section {
+    @apply bg-white dark:bg-background;
   }
 }

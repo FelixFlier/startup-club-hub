@@ -193,7 +193,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="vision" className="py-20 bg-background">
+      <section id="vision" className="py-20 bg-white-section">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8 font-montserrat text-foreground">Our Vision</h2>
@@ -208,7 +208,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="activities" className="py-20 px-4 bg-background">
+      <section id="activities" className="py-20 px-4 bg-white-section">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Our Activities</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -265,7 +265,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-white-section">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Join Our Team</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -314,12 +314,12 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-background">
+      <section className="py-20 px-4 bg-white-section">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Upcoming Events</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {upcomingEvents.map((event, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-secondary">
+              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-secondary">
                 <div className="flex items-center gap-3 mb-4">
                   <Calendar className="text-createu-orange" size={24} />
                   <div className="text-sm text-gray-600 dark:text-gray-400">{event.date}</div>
@@ -350,12 +350,12 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-background">
+      <section className="py-20 px-4 bg-white-section">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Latest News</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {blogPosts.map((post, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-secondary">
+              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-secondary">
                 <div className="text-sm text-gray-600 mb-2 dark:text-gray-400">{post.date}</div>
                 <h3 className="text-xl font-semibold mb-3 font-montserrat text-foreground">{post.title}</h3>
                 <p className="text-muted-foreground mb-4">{post.excerpt}</p>
