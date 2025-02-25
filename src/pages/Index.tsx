@@ -1,3 +1,4 @@
+
 import { UserPlus, Mail, Users, BookOpen, Building, Linkedin, Instagram, Send, ArrowUp, CalendarCheck, Calendar, Sun, Moon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
@@ -77,14 +78,14 @@ const Index = () => {
 
   const partners = [
     {
-      name: "Uppsala University",
-      logo: "/path-to-uu-logo.png",
-      url: "https://www.uu.se"
+      name: "Uppsala Innovation Centre",
+      logo: "/lovable-uploads/60b99da1-9e67-4c03-897b-4c99b5e6f456.png",
+      url: "https://www.uic.se"
     },
     {
-      name: "UU Innovation",
-      logo: "/path-to-uuinnovation-logo.png",
-      url: "https://uuinnovation.uu.se"
+      name: "Uppsala Teknolog- och Naturvetarkår",
+      logo: "/lovable-uploads/098d11bd-bf39-43b7-9917-23208294c15d.png",
+      url: "https://www.utn.se"
     },
     {
       name: "Drivhuset",
@@ -244,7 +245,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Contact</h2>
           <div className="max-w-lg mx-auto">
-            <div className="bg-card p-8 rounded-lg dark:bg-secondary">
+            <div className="bg-white p-8 rounded-lg shadow-md dark:bg-secondary">
               <div className="flex items-center gap-3 mb-6">
                 <Building size={24} className="text-createu-orange" />
                 <h3 className="text-xl font-semibold font-montserrat text-foreground">For Companies</h3>
@@ -300,12 +301,12 @@ const Index = () => {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center dark:bg-secondary"
+                className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center h-40 dark:bg-secondary"
               >
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="max-h-16 object-contain filter dark:invert"
+                  className="max-h-28 max-w-full object-contain dark:brightness-110"
                 />
               </a>
             ))}
@@ -318,14 +319,14 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Upcoming Events</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {upcomingEvents.map((event, index) => (
-              <div key={index} className="bg-createu-beige p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-dark-muted dark:shadow-gray-700">
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-secondary">
                 <div className="flex items-center gap-3 mb-4">
                   <Calendar className="text-createu-orange" size={24} />
                   <div className="text-sm text-gray-600 dark:text-gray-400">{event.date}</div>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 font-montserrat dark:text-dark-foreground">{event.title}</h3>
-                <p className="text-gray-700 dark:text-gray-300">{event.description}</p>
-                <button className="mt-4 text-createu-orange hover:underline flex items-center gap-2 dark:text-createu-orange">
+                <h3 className="text-xl font-semibold mb-2 font-montserrat text-foreground">{event.title}</h3>
+                <p className="text-muted-foreground">{event.description}</p>
+                <button className="mt-4 text-createu-orange hover:underline flex items-center gap-2">
                   <CalendarCheck size={20} />
                   Register Now
                 </button>
@@ -337,21 +338,35 @@ const Index = () => {
 
       <section className="py-20 px-4 bg-background">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Latest News</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {blogPosts.map((post, index) => (
-              <div key={index} className="bg-createu-beige p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-dark-muted dark:shadow-gray-700">
-                <div className="text-sm text-gray-600 mb-2 dark:text-gray-400">{post.date}</div>
-                <h3 className="text-xl font-semibold mb-3 font-montserrat dark:text-dark-foreground">{post.title}</h3>
-                <p className="text-gray-700 mb-4 dark:text-gray-300">{post.excerpt}</p>
-                <button className="text-createu-orange hover:underline dark:text-createu-orange">Read More →</button>
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">FAQ</h2>
+          <div className="max-w-3xl mx-auto">
+            {faqItems.map((item, index) => (
+              <div key={index} className="mb-6 border-b border-border pb-6 last:border-0">
+                <h3 className="text-xl font-semibold mb-2 font-montserrat text-foreground">{item.question}</h3>
+                <p className="text-muted-foreground">{item.answer}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <footer className="bg-background text-foreground py-16">
+      <section className="py-20 px-4 bg-background">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Latest News</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {blogPosts.map((post, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-secondary">
+                <div className="text-sm text-gray-600 mb-2 dark:text-gray-400">{post.date}</div>
+                <h3 className="text-xl font-semibold mb-3 font-montserrat text-foreground">{post.title}</h3>
+                <p className="text-muted-foreground mb-4">{post.excerpt}</p>
+                <button className="text-createu-orange hover:underline">Read More →</button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-secondary text-foreground py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-12">
             <div>
@@ -375,9 +390,9 @@ const Index = () => {
             <div>
               <h3 className="text-xl font-semibold mb-4 font-montserrat">Partners</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-muted-foreground hover:text-createu-orange transition-colors">Partner 1</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-createu-orange transition-colors">Partner 2</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-createu-orange transition-colors">Partner 3</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-createu-orange transition-colors">Uppsala Innovation Centre</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-createu-orange transition-colors">Uppsala Teknolog- och Naturvetarkår</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-createu-orange transition-colors">Drivhuset</a></li>
               </ul>
             </div>
             <div>

@@ -8,15 +8,15 @@
 
 @layer base {
   :root {
-    --background: 39 24% 84%;  /* beige background */
+    --background: 0 0% 100%;  /* white background for sections */
     --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;  /* white cards */
+    --card: 39 24% 84%;  /* beige cards */
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
+    --secondary: 210 40% 96.1%; /* light gray */
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
