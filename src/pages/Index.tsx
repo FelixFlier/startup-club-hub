@@ -1,7 +1,7 @@
 
-import { UserPlus, Mail, Users, BookOpen, Building, Linkedin, Instagram, Send, ArrowUp, CalendarCheck, Calendar, Sun, Moon, Facebook } from "lucide-react";
+import { UserPlus, Mail, Users, BookOpen, Building, Linkedin, Instagram, Send, ArrowUp, CalendarCheck, Calendar, Sun, Moon, Facebook, ChevronDown, ChevronUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Index = () => {
   const { toast } = useToast();
@@ -12,10 +12,38 @@ const Index = () => {
   const [showGetInTouchModal, setShowGetInTouchModal] = useState(false);
   const [showApplyModal, setShowApplyModal] = useState(false);
   const [applyPosition, setApplyPosition] = useState("");
+  const [activeSection, setActiveSection] = useState("vision");
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+
+  // Refs for the sections
+  const visionRef = useRef<HTMLDivElement>(null);
+  const activitiesRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
+      
+      // Scrollspy logic
+      const scrollPosition = window.scrollY + 200; // Offset for better UX
+      
+      const sections = [
+        { id: "vision", ref: visionRef },
+        { id: "activities", ref: activitiesRef },
+        { id: "contact", ref: contactRef }
+      ];
+      
+      for (const section of sections) {
+        if (section.ref.current) {
+          const offsetTop = section.ref.current.offsetTop;
+          const height = section.ref.current.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -61,6 +89,10 @@ const Index = () => {
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
+  };
+
+  const toggleFaq = (index: number) => {
+    setExpandedFaq(expandedFaq === index ? null : index);
   };
 
   const openPositions = [
@@ -163,12 +195,16 @@ const Index = () => {
     }
   ];
 
+  // Wave SVG paths
+  const wave1 = "M0,32L48,48C96,64,192,96,288,101.3C384,107,480,85,576,74.7C672,64,768,64,864,74.7C960,85,1056,107,1152,112C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z";
+  const wave2 = "M0,128L48,144C96,160,192,192,288,197.3C384,203,480,181,576,170.7C672,160,768,160,864,170.7C960,181,1056,203,1152,208C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z";
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 bg-createu-orange text-white p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 z-50 ${
+        className={`fixed bottom-8 right-8 bg-createu-orange text-white p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 z-50 btn-micro-bounce ${
           showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -187,7 +223,7 @@ const Index = () => {
             <div className="flex justify-end">
               <button 
                 onClick={() => setShowGetInTouchModal(false)}
-                className="bg-createu-orange text-white px-4 py-2 rounded hover:bg-opacity-90 transition-colors"
+                className="bg-createu-orange text-white px-4 py-2 rounded hover:bg-opacity-90 transition-colors btn-jelly"
               >
                 Close
               </button>
@@ -213,7 +249,7 @@ const Index = () => {
             <div className="flex justify-end">
               <button 
                 onClick={() => setShowApplyModal(false)}
-                className="bg-createu-orange text-white px-4 py-2 rounded hover:bg-opacity-90 transition-colors"
+                className="bg-createu-orange text-white px-4 py-2 rounded hover:bg-opacity-90 transition-colors btn-jelly"
               >
                 Close
               </button>
@@ -226,20 +262,20 @@ const Index = () => {
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <div className="flex gap-4 md:gap-8 w-full justify-center">
-              <a href="#vision" className="text-foreground hover:text-createu-orange transition-all hover:scale-105">Vision</a>
-              <a href="#activities" className="text-foreground hover:text-createu-orange transition-all hover:scale-105">Activities</a>
-              <a href="#contact" className="text-foreground hover:text-createu-orange transition-all hover:scale-105">Contact</a>
+              <a href="#vision" className={`nav-link ${activeSection === 'vision' ? 'active' : ''}`}>Vision</a>
+              <a href="#activities" className={`nav-link ${activeSection === 'activities' ? 'active' : ''}`}>Activities</a>
+              <a href="#contact" className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}>Contact</a>
             </div>
             <div className="flex items-center space-x-4 ml-4">
               <button
                 onClick={toggleLanguage}
-                className="px-3 py-2 rounded-md hover:bg-secondary transition-colors text-sm text-foreground"
+                className="px-3 py-2 rounded-md hover:bg-secondary transition-colors text-sm text-foreground btn-micro-bounce"
               >
                 {language === "en" ? "EN" : "SV"}
               </button>
               <button
                 onClick={toggleTheme}
-                className="p-2 rounded-md hover:bg-secondary transition-colors text-foreground"
+                className="p-2 rounded-md hover:bg-secondary transition-colors text-foreground btn-micro-bounce"
               >
                 {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
               </button>
@@ -248,7 +284,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section className="pt-32 pb-20 px-4 bg-background">
+      <section className="pt-32 pb-20 px-4 bg-background relative">
         <div className="container mx-auto text-center animate-fade-in">
           <h1 className="text-5xl font-bold mb-6 font-montserrat text-foreground">
             Welcome to <span className="font-extrabold text-5xl">CREATE<span className="text-createu-orange">U</span></span>
@@ -261,15 +297,20 @@ const Index = () => {
             href="https://go.orbiapp.io/Ljr9nnGjjRb"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-createu-orange text-white px-8 py-3 rounded-lg hover:scale-110 hover:shadow-xl transition-all flex items-center gap-2 mx-auto inline-flex"
+            className="bg-createu-orange text-white px-8 py-3 rounded-lg hover:scale-110 hover:shadow-xl transition-all flex items-center gap-2 mx-auto inline-flex btn-pulse"
           >
             <UserPlus size={20} />
             Become a Member
           </a>
         </div>
+        <div className="wave-divider bottom">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#FFFFFF" fillOpacity="1" d={wave1}></path>
+          </svg>
+        </div>
       </section>
 
-      <section id="vision" className="py-20 bg-white-section">
+      <section id="vision" ref={visionRef} className="py-20 bg-white-section relative">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8 font-montserrat text-foreground">Our Vision</h2>
@@ -282,9 +323,14 @@ const Index = () => {
             </p>
           </div>
         </div>
+        <div className="wave-divider bottom">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill={theme === "light" ? "#EBE1C6" : "#09090B"} fillOpacity="1" d={wave2}></path>
+          </svg>
+        </div>
       </section>
 
-      <section id="activities" className="py-20 px-4 bg-white-section">
+      <section id="activities" ref={activitiesRef} className="py-20 px-4 bg-background relative">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Our Activities</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -315,13 +361,18 @@ const Index = () => {
             ))}
           </div>
         </div>
+        <div className="wave-divider bottom">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#FFFFFF" fillOpacity="1" d={wave1}></path>
+          </svg>
+        </div>
       </section>
 
-      <section id="contact" className="py-20 bg-background">
+      <section id="contact" ref={contactRef} className="py-20 bg-white-section relative">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Contact</h2>
           <div className="max-w-lg mx-auto">
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 dark:bg-secondary">
+            <div className="bg-card p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 dark:bg-secondary">
               <div className="flex items-center gap-3 mb-6">
                 <Building size={24} className="text-createu-orange" />
                 <h3 className="text-xl font-semibold font-montserrat text-foreground">For Companies</h3>
@@ -331,7 +382,7 @@ const Index = () => {
               </p>
               <button
                 onClick={handleContact}
-                className="w-full bg-createu-orange text-white px-6 py-3 rounded-lg hover:bg-opacity-80 hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+                className="w-full bg-createu-orange text-white px-6 py-3 rounded-lg hover:bg-opacity-80 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 btn-jelly"
               >
                 <Mail size={20} />
                 Get in Touch
@@ -339,9 +390,14 @@ const Index = () => {
             </div>
           </div>
         </div>
+        <div className="wave-divider bottom">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill={theme === "light" ? "#EBE1C6" : "#09090B"} fillOpacity="1" d={wave2}></path>
+          </svg>
+        </div>
       </section>
 
-      <section className="py-20 bg-white-section">
+      <section className="py-20 bg-background relative">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Join Our Team</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -352,7 +408,7 @@ const Index = () => {
                 <p className="text-foreground mb-4">{position.description}</p>
                 <button 
                   onClick={() => handleApply(position.title)}
-                  className="text-createu-orange hover:underline hover:text-opacity-80 flex items-center gap-2 transition-all"
+                  className="text-createu-orange hover:underline hover:text-opacity-80 flex items-center gap-2 transition-all btn-micro-bounce"
                 >
                   Apply Now →
                 </button>
@@ -360,9 +416,14 @@ const Index = () => {
             ))}
           </div>
         </div>
+        <div className="wave-divider bottom">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#FFFFFF" fillOpacity="1" d={wave1}></path>
+          </svg>
+        </div>
       </section>
 
-      <section className="py-20 px-4 bg-background">
+      <section className="py-20 px-4 bg-white-section relative">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Our Partners</h2>
           <div className="grid md:grid-cols-3 gap-8 items-center">
@@ -372,7 +433,7 @@ const Index = () => {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center h-40 dark:bg-secondary"
+                className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center h-40 dark:bg-secondary"
               >
                 <img
                   src={partner.logo}
@@ -383,9 +444,14 @@ const Index = () => {
             ))}
           </div>
         </div>
+        <div className="wave-divider bottom">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill={theme === "light" ? "#EBE1C6" : "#09090B"} fillOpacity="1" d={wave2}></path>
+          </svg>
+        </div>
       </section>
 
-      <section className="py-20 px-4 bg-white-section">
+      <section className="py-20 px-4 bg-background relative">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Upcoming Events</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -397,7 +463,7 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-2 font-montserrat text-foreground">{event.title}</h3>
                 <p className="text-foreground">{event.description}</p>
-                <button className="mt-4 text-createu-orange hover:underline hover:text-opacity-80 flex items-center gap-2 transition-colors">
+                <button className="mt-4 text-createu-orange hover:underline hover:text-opacity-80 flex items-center gap-2 transition-colors btn-micro-bounce">
                   <CalendarCheck size={20} />
                   Register Now
                 </button>
@@ -405,23 +471,45 @@ const Index = () => {
             ))}
           </div>
         </div>
+        <div className="wave-divider bottom">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#FFFFFF" fillOpacity="1" d={wave1}></path>
+          </svg>
+        </div>
       </section>
 
-      <section className="py-20 px-4 bg-background">
+      <section className="py-20 px-4 bg-white-section relative">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">FAQ</h2>
           <div className="max-w-3xl mx-auto">
             {faqItems.map((item, index) => (
-              <div key={index} className="mb-6 border-b border-border pb-6 last:border-0 hover:bg-opacity-50 transition-all duration-300">
-                <h3 className="text-xl font-semibold mb-2 font-montserrat text-foreground">{item.question}</h3>
-                <p className="text-foreground">{item.answer}</p>
+              <div key={index} className="faq-item">
+                <div 
+                  className="faq-question"
+                  onClick={() => toggleFaq(index)}
+                >
+                  <h3 className="text-xl font-semibold font-montserrat text-foreground">{item.question}</h3>
+                  <button className="text-createu-orange p-1 rounded-full hover:bg-background/30 transition-colors">
+                    {expandedFaq === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  </button>
+                </div>
+                {expandedFaq === index && (
+                  <div className="faq-answer animate-in fade-in slide-in duration-300">
+                    <p className="text-foreground">{item.answer}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
+        <div className="wave-divider bottom">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill={theme === "light" ? "#EBE1C6" : "#09090B"} fillOpacity="1" d={wave2}></path>
+          </svg>
+        </div>
       </section>
 
-      <section className="py-20 px-4 bg-white-section">
+      <section className="py-20 px-4 bg-background relative">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Latest News</h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -430,7 +518,7 @@ const Index = () => {
                 <div className="text-sm text-foreground mb-2 dark:text-gray-400">{post.date}</div>
                 <h3 className="text-xl font-semibold mb-3 font-montserrat text-foreground">{post.title}</h3>
                 <p className="text-foreground mb-4">{post.excerpt}</p>
-                <button className="text-createu-orange hover:underline hover:text-opacity-80 transition-colors">Read More →</button>
+                <button className="text-createu-orange hover:underline hover:text-opacity-80 transition-colors btn-micro-bounce">Read More →</button>
               </div>
             ))}
           </div>
@@ -453,7 +541,7 @@ const Index = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   className="bg-background text-foreground px-4 py-2 rounded-lg flex-grow border border-border"
                 />
-                <button type="submit" className="bg-createu-orange p-2 rounded-lg hover:scale-110 transition-transform">
+                <button type="submit" className="bg-createu-orange p-2 rounded-lg hover:scale-110 transition-transform btn-jelly">
                   <Send size={20} className="text-white" />
                 </button>
               </form>
