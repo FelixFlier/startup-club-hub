@@ -32,24 +32,24 @@
 
   .dark {
     --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --foreground: 39 24% 84%; /* Changed to beige like the light mode background */
     --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card-foreground: 39 24% 84%; /* Changed to beige */
     --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
+    --popover-foreground: 39 24% 84%; /* Changed to beige */
+    --primary: 39 24% 84%; /* Changed to beige */
     --primary-foreground: 240 5.9% 10%;
     --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary-foreground: 39 24% 84%; /* Changed to beige */
     --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted-foreground: 39 24% 84%; /* Changed to beige */
     --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent-foreground: 39 24% 84%; /* Changed to beige */
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 39 24% 84%; /* Changed to beige */
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --ring: 39 24% 84%; /* Changed to beige */
   }
 }
 
@@ -64,36 +64,6 @@ html {
   
   .bg-white-section {
     @apply bg-white dark:bg-background;
-  }
-
-  /* Wave separator styles */
-  .wave-divider {
-    position: relative;
-    height: 70px;
-    overflow: hidden;
-  }
-  
-  .wave-divider.top {
-    margin-top: -70px;
-  }
-  
-  .wave-divider.bottom {
-    margin-bottom: -70px;
-  }
-  
-  .wave-divider svg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .wave-divider.top svg {
-    top: 0;
-  }
-  
-  .wave-divider.bottom svg {
-    bottom: 0;
-    transform: rotate(180deg);
   }
 
   /* Micro animations */

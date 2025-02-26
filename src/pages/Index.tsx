@@ -195,10 +195,6 @@ const Index = () => {
     }
   ];
 
-  // Wave SVG paths
-  const wave1 = "M0,32L48,48C96,64,192,96,288,101.3C384,107,480,85,576,74.7C672,64,768,64,864,74.7C960,85,1056,107,1152,112C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z";
-  const wave2 = "M0,128L48,144C96,160,192,192,288,197.3C384,203,480,181,576,170.7C672,160,768,160,864,170.7C960,181,1056,203,1152,208C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z";
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Scroll to top button */}
@@ -284,7 +280,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section className="pt-32 pb-20 px-4 bg-background relative">
+      <section className="pt-32 pb-20 px-4 bg-background">
         <div className="container mx-auto text-center animate-fade-in">
           <h1 className="text-5xl font-bold mb-6 font-montserrat text-foreground">
             Welcome to <span className="font-extrabold text-5xl">CREATE<span className="text-createu-orange">U</span></span>
@@ -303,14 +299,9 @@ const Index = () => {
             Become a Member
           </a>
         </div>
-        <div className="wave-divider bottom">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-            <path fill="#FFFFFF" fillOpacity="1" d={wave1}></path>
-          </svg>
-        </div>
       </section>
 
-      <section id="vision" ref={visionRef} className="py-20 bg-white-section relative">
+      <section id="vision" ref={visionRef} className="py-20 bg-white-section">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8 font-montserrat text-foreground">Our Vision</h2>
@@ -323,14 +314,9 @@ const Index = () => {
             </p>
           </div>
         </div>
-        <div className="wave-divider bottom">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-            <path fill={theme === "light" ? "#EBE1C6" : "#09090B"} fillOpacity="1" d={wave2}></path>
-          </svg>
-        </div>
       </section>
 
-      <section id="activities" ref={activitiesRef} className="py-20 px-4 bg-background relative">
+      <section id="activities" ref={activitiesRef} className="py-20 px-4 bg-background">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Our Activities</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -361,14 +347,9 @@ const Index = () => {
             ))}
           </div>
         </div>
-        <div className="wave-divider bottom">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-            <path fill="#FFFFFF" fillOpacity="1" d={wave1}></path>
-          </svg>
-        </div>
       </section>
 
-      <section id="contact" ref={contactRef} className="py-20 bg-white-section relative">
+      <section id="contact" ref={contactRef} className="py-20 bg-white-section">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Contact</h2>
           <div className="max-w-lg mx-auto">
@@ -390,14 +371,9 @@ const Index = () => {
             </div>
           </div>
         </div>
-        <div className="wave-divider bottom">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-            <path fill={theme === "light" ? "#EBE1C6" : "#09090B"} fillOpacity="1" d={wave2}></path>
-          </svg>
-        </div>
       </section>
 
-      <section className="py-20 bg-background relative">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Join Our Team</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -416,14 +392,9 @@ const Index = () => {
             ))}
           </div>
         </div>
-        <div className="wave-divider bottom">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-            <path fill="#FFFFFF" fillOpacity="1" d={wave1}></path>
-          </svg>
-        </div>
       </section>
 
-      <section className="py-20 px-4 bg-white-section relative">
+      <section className="py-20 px-4 bg-white-section">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Our Partners</h2>
           <div className="grid md:grid-cols-3 gap-8 items-center">
@@ -444,14 +415,9 @@ const Index = () => {
             ))}
           </div>
         </div>
-        <div className="wave-divider bottom">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-            <path fill={theme === "light" ? "#EBE1C6" : "#09090B"} fillOpacity="1" d={wave2}></path>
-          </svg>
-        </div>
       </section>
 
-      <section className="py-20 px-4 bg-background relative">
+      <section className="py-20 px-4 bg-background">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Upcoming Events</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -471,14 +437,9 @@ const Index = () => {
             ))}
           </div>
         </div>
-        <div className="wave-divider bottom">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-            <path fill="#FFFFFF" fillOpacity="1" d={wave1}></path>
-          </svg>
-        </div>
       </section>
 
-      <section className="py-20 px-4 bg-white-section relative">
+      <section className="py-20 px-4 bg-white-section">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">FAQ</h2>
           <div className="max-w-3xl mx-auto">
@@ -502,14 +463,9 @@ const Index = () => {
             ))}
           </div>
         </div>
-        <div className="wave-divider bottom">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-            <path fill={theme === "light" ? "#EBE1C6" : "#09090B"} fillOpacity="1" d={wave2}></path>
-          </svg>
-        </div>
       </section>
 
-      <section className="py-20 px-4 bg-background relative">
+      <section className="py-20 px-4 bg-background">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Latest News</h2>
           <div className="grid md:grid-cols-2 gap-8">
