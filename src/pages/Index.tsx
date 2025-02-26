@@ -1,5 +1,5 @@
 
-import { UserPlus, Mail, Users, BookOpen, Building, Linkedin, Instagram, Send, ArrowUp, CalendarCheck, Calendar, Sun, Moon } from "lucide-react";
+import { UserPlus, Mail, Users, BookOpen, Building, Linkedin, Instagram, Send, ArrowUp, CalendarCheck, Calendar, Sun, Moon, Facebook } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
 
@@ -88,9 +88,9 @@ const Index = () => {
       url: "https://www.utn.se"
     },
     {
-      name: "Drivhuset",
-      logo: "/path-to-drivhuset-logo.png",
-      url: "https://drivhuset.se/uppsala"
+      name: "Uppsala Universitet",
+      logo: "/lovable-uploads/c73b454b-f339-43f9-b9a1-cab3b744fa7b.png",
+      url: "https://uuinvest.se/en/"
     }
   ];
 
@@ -140,6 +140,24 @@ const Index = () => {
     }
   ];
 
+  const socialLinks = [
+    {
+      name: "Instagram",
+      icon: <Instagram size={24} />,
+      url: "https://www.instagram.com/createu_uppsala?igsh=dGt5czgza3NuZmRk"
+    },
+    {
+      name: "LinkedIn",
+      icon: <Linkedin size={24} />,
+      url: "https://www.linkedin.com/company/createu-uppsala/"
+    },
+    {
+      name: "Facebook",
+      icon: <Facebook size={24} />,
+      url: "https://www.facebook.com/share/15eSF1pkwq/"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <button
@@ -186,7 +204,7 @@ const Index = () => {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             We support innovative minds and promote entrepreneurial thinking in the university city of Uppsala.
           </p>
-          <button className="bg-createu-orange text-white px-8 py-3 rounded-lg hover:scale-105 hover:shadow-lg transition-all flex items-center gap-2 mx-auto">
+          <button className="bg-createu-orange text-white px-8 py-3 rounded-lg hover:scale-110 hover:shadow-xl transition-all flex items-center gap-2 mx-auto">
             <UserPlus size={20} />
             Become a Member
           </button>
@@ -229,7 +247,7 @@ const Index = () => {
                 description: "Regular meetings for exchange and networking."
               }
             ].map((activity, index) => (
-              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl transition-all dark:bg-secondary">
+              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 dark:bg-secondary">
                 <div className="flex items-center gap-3 mb-4">
                   {activity.icon}
                   <h3 className="text-xl font-semibold text-foreground font-montserrat">{activity.title}</h3>
@@ -245,7 +263,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Contact</h2>
           <div className="max-w-lg mx-auto">
-            <div className="bg-white p-8 rounded-lg shadow-md dark:bg-secondary">
+            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 dark:bg-secondary">
               <div className="flex items-center gap-3 mb-6">
                 <Building size={24} className="text-createu-orange" />
                 <h3 className="text-xl font-semibold font-montserrat text-foreground">For Companies</h3>
@@ -255,7 +273,7 @@ const Index = () => {
               </p>
               <button
                 onClick={handleContact}
-                className="w-full bg-createu-orange text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-createu-orange text-white px-6 py-3 rounded-lg hover:bg-opacity-80 hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
               >
                 <Mail size={20} />
                 Get in Touch
@@ -270,7 +288,7 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Join Our Team</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {openPositions.map((position, index) => (
-              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl transition-all dark:bg-secondary">
+              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 dark:bg-secondary">
                 <h3 className="text-xl font-bold mb-2 text-foreground">{position.title}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{position.type}</p>
                 <p className="text-muted-foreground mb-4">{position.description}</p>
@@ -281,7 +299,7 @@ const Index = () => {
                       description: "Please send your application to recruitment@createu-uppsala.se",
                     });
                   }}
-                  className="text-createu-orange hover:underline flex items-center gap-2"
+                  className="text-createu-orange hover:underline hover:text-opacity-80 flex items-center gap-2 transition-all"
                 >
                   Apply Now →
                 </button>
@@ -301,7 +319,7 @@ const Index = () => {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center h-40 dark:bg-secondary"
+                className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center h-40 dark:bg-secondary"
               >
                 <img
                   src={partner.logo}
@@ -319,14 +337,14 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Upcoming Events</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {upcomingEvents.map((event, index) => (
-              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-secondary">
+              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 dark:bg-secondary">
                 <div className="flex items-center gap-3 mb-4">
                   <Calendar className="text-createu-orange" size={24} />
                   <div className="text-sm text-gray-600 dark:text-gray-400">{event.date}</div>
                 </div>
                 <h3 className="text-xl font-semibold mb-2 font-montserrat text-foreground">{event.title}</h3>
                 <p className="text-muted-foreground">{event.description}</p>
-                <button className="mt-4 text-createu-orange hover:underline flex items-center gap-2">
+                <button className="mt-4 text-createu-orange hover:underline hover:text-opacity-80 flex items-center gap-2 transition-colors">
                   <CalendarCheck size={20} />
                   Register Now
                 </button>
@@ -341,7 +359,7 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">FAQ</h2>
           <div className="max-w-3xl mx-auto">
             {faqItems.map((item, index) => (
-              <div key={index} className="mb-6 border-b border-border pb-6 last:border-0">
+              <div key={index} className="mb-6 border-b border-border pb-6 last:border-0 hover:bg-opacity-50 transition-all duration-300">
                 <h3 className="text-xl font-semibold mb-2 font-montserrat text-foreground">{item.question}</h3>
                 <p className="text-muted-foreground">{item.answer}</p>
               </div>
@@ -355,11 +373,11 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Latest News</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {blogPosts.map((post, index) => (
-              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105 dark:bg-secondary">
+              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 dark:bg-secondary">
                 <div className="text-sm text-gray-600 mb-2 dark:text-gray-400">{post.date}</div>
                 <h3 className="text-xl font-semibold mb-3 font-montserrat text-foreground">{post.title}</h3>
                 <p className="text-muted-foreground mb-4">{post.excerpt}</p>
-                <button className="text-createu-orange hover:underline">Read More →</button>
+                <button className="text-createu-orange hover:underline hover:text-opacity-80 transition-colors">Read More →</button>
               </div>
             ))}
           </div>
@@ -382,7 +400,7 @@ const Index = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   className="bg-background text-foreground px-4 py-2 rounded-lg flex-grow border border-border"
                 />
-                <button type="submit" className="bg-createu-orange p-2 rounded-lg hover:scale-105 transition-transform">
+                <button type="submit" className="bg-createu-orange p-2 rounded-lg hover:scale-110 transition-transform">
                   <Send size={20} className="text-white" />
                 </button>
               </form>
@@ -390,28 +408,35 @@ const Index = () => {
             <div>
               <h3 className="text-xl font-semibold mb-4 font-montserrat">Partners</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-muted-foreground hover:text-createu-orange transition-colors">Uppsala Innovation Centre</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-createu-orange transition-colors">Uppsala Teknolog- och Naturvetarkår</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-createu-orange transition-colors">Drivhuset</a></li>
+                <li><a href="https://www.uic.se" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-createu-orange transition-colors">Uppsala Innovation Centre</a></li>
+                <li><a href="https://www.utn.se" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-createu-orange transition-colors">Uppsala Teknolog- och Naturvetarkår</a></li>
+                <li><a href="https://uuinvest.se/en/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-createu-orange transition-colors">Uppsala Universitet</a></li>
               </ul>
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-4 font-montserrat">Contact</h3>
               <p className="text-muted-foreground">
-                Email: info@createu-uppsala.se<br />
-                Address: Uppsala University<br />
-                751 05 Uppsala
+                Email: createuuppsala@gmail.com<br />
+                Address: Polacksbacken<br />
+                -Haus 73<br />
+                752 37 Uppsala
               </p>
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-4 font-montserrat">Follow Us</h3>
               <div className="flex gap-4">
-                <a href="#" className="text-muted-foreground hover:text-createu-orange hover:scale-110 transition-all">
-                  <Instagram size={24} />
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-createu-orange hover:scale-110 transition-all">
-                  <Linkedin size={24} />
-                </a>
+                {socialLinks.map((social, index) => (
+                  <a 
+                    key={index}
+                    href={social.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-createu-orange hover:scale-125 transition-all"
+                    aria-label={social.name}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
