@@ -9,6 +9,9 @@ const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [language, setLanguage] = useState("en");
   const [theme, setTheme] = useState("light");
+  const [showGetInTouchModal, setShowGetInTouchModal] = useState(false);
+  const [showApplyModal, setShowApplyModal] = useState(false);
+  const [applyPosition, setApplyPosition] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,10 +35,12 @@ const Index = () => {
   };
 
   const handleContact = () => {
-    toast({
-      title: "Thank you for your interest!",
-      description: "We will get back to you soon.",
-    });
+    setShowGetInTouchModal(true);
+  };
+
+  const handleApply = (position: string) => {
+    setApplyPosition(position);
+    setShowApplyModal(true);
   };
 
   const handleNewsletter = (e: React.FormEvent) => {
@@ -160,6 +165,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
         className={`fixed bottom-8 right-8 bg-createu-orange text-white p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 z-50 ${
@@ -168,6 +174,53 @@ const Index = () => {
       >
         <ArrowUp size={24} />
       </button>
+
+      {/* Get in Touch Modal */}
+      {showGetInTouchModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-secondary rounded-lg shadow-xl p-6 max-w-md w-full animate-in fade-in zoom-in duration-300">
+            <h3 className="text-xl font-bold mb-4 text-foreground">Get in Touch</h3>
+            <p className="text-foreground mb-6">
+              We'd love to hear from you! Please send an email to our team at:
+            </p>
+            <p className="text-createu-orange font-semibold mb-6">createuuppsala@gmail.com</p>
+            <div className="flex justify-end">
+              <button 
+                onClick={() => setShowGetInTouchModal(false)}
+                className="bg-createu-orange text-white px-4 py-2 rounded hover:bg-opacity-90 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Apply Modal */}
+      {showApplyModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-secondary rounded-lg shadow-xl p-6 max-w-md w-full animate-in fade-in zoom-in duration-300">
+            <h3 className="text-xl font-bold mb-4 text-foreground">
+              Apply for {applyPosition}
+            </h3>
+            <p className="text-foreground mb-4">
+              We're excited about your interest in joining our team! Please send your application with your CV and a brief introduction to:
+            </p>
+            <p className="text-createu-orange font-semibold mb-6">recruitment@createu-uppsala.se</p>
+            <p className="text-foreground mb-6">
+              Please mention "{applyPosition}" in the subject line.
+            </p>
+            <div className="flex justify-end">
+              <button 
+                onClick={() => setShowApplyModal(false)}
+                className="bg-createu-orange text-white px-4 py-2 rounded hover:bg-opacity-90 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl glass-effect z-50 rounded-full shadow-lg">
         <div className="container mx-auto px-6 py-3">
@@ -201,13 +254,18 @@ const Index = () => {
             Welcome to <span className="font-extrabold text-5xl">CREATE<span className="text-createu-orange">U</span></span>
             <div className="text-lg mt-1 font-hind-hunter">Uppsala</div>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-foreground max-w-2xl mx-auto mb-8">
             We support innovative minds and promote entrepreneurial thinking in the university city of Uppsala.
           </p>
-          <button className="bg-createu-orange text-white px-8 py-3 rounded-lg hover:scale-110 hover:shadow-xl transition-all flex items-center gap-2 mx-auto">
+          <a 
+            href="https://go.orbiapp.io/Ljr9nnGjjRb"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-createu-orange text-white px-8 py-3 rounded-lg hover:scale-110 hover:shadow-xl transition-all flex items-center gap-2 mx-auto inline-flex"
+          >
             <UserPlus size={20} />
             Become a Member
-          </button>
+          </a>
         </div>
       </section>
 
@@ -218,7 +276,7 @@ const Index = () => {
             <div className="flex items-center justify-center mb-8">
               <BookOpen size={40} className="text-createu-orange" />
             </div>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-lg text-foreground leading-relaxed">
               CreateU Uppsala strives to be the leading platform for student entrepreneurs and innovative thinkers.
               We create an ecosystem that connects inspiration, knowledge, and networks.
             </p>
@@ -252,7 +310,7 @@ const Index = () => {
                   {activity.icon}
                   <h3 className="text-xl font-semibold text-foreground font-montserrat">{activity.title}</h3>
                 </div>
-                <p className="text-muted-foreground">{activity.description}</p>
+                <p className="text-foreground">{activity.description}</p>
               </div>
             ))}
           </div>
@@ -268,7 +326,7 @@ const Index = () => {
                 <Building size={24} className="text-createu-orange" />
                 <h3 className="text-xl font-semibold font-montserrat text-foreground">For Companies</h3>
               </div>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-foreground mb-6">
                 Would you like to work with motivated students? Contact us for cooperation opportunities.
               </p>
               <button
@@ -290,15 +348,10 @@ const Index = () => {
             {openPositions.map((position, index) => (
               <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 dark:bg-secondary">
                 <h3 className="text-xl font-bold mb-2 text-foreground">{position.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">{position.type}</p>
-                <p className="text-muted-foreground mb-4">{position.description}</p>
+                <p className="text-foreground text-sm mb-4">{position.type}</p>
+                <p className="text-foreground mb-4">{position.description}</p>
                 <button 
-                  onClick={() => {
-                    toast({
-                      title: "Application Info",
-                      description: "Please send your application to recruitment@createu-uppsala.se",
-                    });
-                  }}
+                  onClick={() => handleApply(position.title)}
                   className="text-createu-orange hover:underline hover:text-opacity-80 flex items-center gap-2 transition-all"
                 >
                   Apply Now →
@@ -340,10 +393,10 @@ const Index = () => {
               <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 dark:bg-secondary">
                 <div className="flex items-center gap-3 mb-4">
                   <Calendar className="text-createu-orange" size={24} />
-                  <div className="text-sm text-gray-600 dark:text-gray-400">{event.date}</div>
+                  <div className="text-sm text-foreground dark:text-gray-400">{event.date}</div>
                 </div>
                 <h3 className="text-xl font-semibold mb-2 font-montserrat text-foreground">{event.title}</h3>
-                <p className="text-muted-foreground">{event.description}</p>
+                <p className="text-foreground">{event.description}</p>
                 <button className="mt-4 text-createu-orange hover:underline hover:text-opacity-80 flex items-center gap-2 transition-colors">
                   <CalendarCheck size={20} />
                   Register Now
@@ -361,7 +414,7 @@ const Index = () => {
             {faqItems.map((item, index) => (
               <div key={index} className="mb-6 border-b border-border pb-6 last:border-0 hover:bg-opacity-50 transition-all duration-300">
                 <h3 className="text-xl font-semibold mb-2 font-montserrat text-foreground">{item.question}</h3>
-                <p className="text-muted-foreground">{item.answer}</p>
+                <p className="text-foreground">{item.answer}</p>
               </div>
             ))}
           </div>
@@ -374,9 +427,9 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {blogPosts.map((post, index) => (
               <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 dark:bg-secondary">
-                <div className="text-sm text-gray-600 mb-2 dark:text-gray-400">{post.date}</div>
+                <div className="text-sm text-foreground mb-2 dark:text-gray-400">{post.date}</div>
                 <h3 className="text-xl font-semibold mb-3 font-montserrat text-foreground">{post.title}</h3>
-                <p className="text-muted-foreground mb-4">{post.excerpt}</p>
+                <p className="text-foreground mb-4">{post.excerpt}</p>
                 <button className="text-createu-orange hover:underline hover:text-opacity-80 transition-colors">Read More →</button>
               </div>
             ))}
@@ -389,7 +442,7 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-12">
             <div>
               <h3 className="text-2xl font-bold mb-6 font-montserrat">Stay Connected</h3>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-foreground mb-4">
                 Stay up to date with our latest updates and exclusive offers.
               </p>
               <form onSubmit={handleNewsletter} className="flex gap-2">
@@ -408,14 +461,14 @@ const Index = () => {
             <div>
               <h3 className="text-xl font-semibold mb-4 font-montserrat">Partners</h3>
               <ul className="space-y-2">
-                <li><a href="https://www.uic.se" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-createu-orange transition-colors">Uppsala Innovation Centre</a></li>
-                <li><a href="https://www.utn.se" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-createu-orange transition-colors">Uppsala Teknolog- och Naturvetarkår</a></li>
-                <li><a href="https://uuinvest.se/en/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-createu-orange transition-colors">Uppsala Universitet</a></li>
+                <li><a href="https://www.uic.se" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-createu-orange transition-colors">Uppsala Innovation Centre</a></li>
+                <li><a href="https://www.utn.se" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-createu-orange transition-colors">Uppsala Teknolog- och Naturvetarkår</a></li>
+                <li><a href="https://uuinvest.se/en/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-createu-orange transition-colors">Uppsala Universitet</a></li>
               </ul>
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-4 font-montserrat">Contact</h3>
-              <p className="text-muted-foreground">
+              <p className="text-foreground">
                 Email: createuuppsala@gmail.com<br />
                 Address: Polacksbacken<br />
                 -Haus 73<br />
@@ -431,7 +484,7 @@ const Index = () => {
                     href={social.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-createu-orange hover:scale-125 transition-all"
+                    className="text-foreground hover:text-createu-orange hover:scale-125 transition-all"
                     aria-label={social.name}
                   >
                     {social.icon}
@@ -440,7 +493,7 @@ const Index = () => {
               </div>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-border text-center text-muted-foreground">
+          <div className="mt-12 pt-8 border-t border-border text-center text-foreground">
             <p>© {new Date().getFullYear()} CreateU Uppsala. All rights reserved.</p>
           </div>
         </div>
