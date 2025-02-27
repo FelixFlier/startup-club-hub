@@ -2,7 +2,7 @@
 import { UserPlus, Mail, Users, BookOpen, Building, Linkedin, Instagram, Send, ArrowUp, CalendarCheck, Calendar, Sun, Moon, Facebook, ChevronDown, ChevronUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect, useRef } from "react";
-import { useMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
   const { toast } = useToast();
@@ -15,7 +15,7 @@ const Index = () => {
   const [applyPosition, setApplyPosition] = useState("");
   const [activeSection, setActiveSection] = useState("vision");
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
 
   // Refs für die Sektionen
   const visionRef = useRef<HTMLDivElement>(null);
