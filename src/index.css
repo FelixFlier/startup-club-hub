@@ -57,6 +57,24 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Subtile Mustereffekte nur für den hellen Modus */
+body:not(.dark) {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center;
+}
+
+/* Spezifische Stile für den weißen Hintergrund im hellen Modus */
+body:not(.dark) .bg-white-section {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: center;
+}
+
 @layer utilities {
   .glass-effect {
     @apply backdrop-blur-md bg-white/80 dark:bg-black/20;

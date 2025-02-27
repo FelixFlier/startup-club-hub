@@ -2,6 +2,7 @@
 import { UserPlus, Mail, Users, BookOpen, Building, Linkedin, Instagram, Send, ArrowUp, CalendarCheck, Calendar, Sun, Moon, Facebook, ChevronDown, ChevronUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect, useRef } from "react";
+import { useMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
   const { toast } = useToast();
@@ -14,6 +15,7 @@ const Index = () => {
   const [applyPosition, setApplyPosition] = useState("");
   const [activeSection, setActiveSection] = useState("vision");
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const isMobile = useMobile();
 
   // Refs für die Sektionen
   const visionRef = useRef<HTMLDivElement>(null);
@@ -204,6 +206,22 @@ const Index = () => {
     }
   ];
 
+  // Nur die wichtigsten Navigationslinks für Mobile anzeigen
+  const navLinks = isMobile 
+    ? [
+        { href: "#vision", label: "Vision", id: "vision" },
+        { href: "#activities", label: "Activities", id: "activities" },
+        { href: "#contact", label: "Contact", id: "contact" }
+      ]
+    : [
+        { href: "#vision", label: "Vision", id: "vision" },
+        { href: "#activities", label: "Activities", id: "activities" },
+        { href: "#events", label: "Upcoming Events", id: "events" },
+        { href: "#faq", label: "FAQ", id: "faq" },
+        { href: "#news", label: "Latest News", id: "news" },
+        { href: "#contact", label: "Contact", id: "contact" }
+      ];
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Scroll to top button */}
@@ -267,12 +285,15 @@ const Index = () => {
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex gap-3 md:gap-6 w-full justify-center text-sm md:text-base overflow-x-auto no-scrollbar">
-              <a href="#vision" className={`nav-link whitespace-nowrap ${activeSection === 'vision' ? 'active' : ''}`}>Vision</a>
-              <a href="#activities" className={`nav-link whitespace-nowrap ${activeSection === 'activities' ? 'active' : ''}`}>Activities</a>
-              <a href="#events" className={`nav-link whitespace-nowrap ${activeSection === 'events' ? 'active' : ''}`}>Upcoming Events</a>
-              <a href="#faq" className={`nav-link whitespace-nowrap ${activeSection === 'faq' ? 'active' : ''}`}>FAQ</a>
-              <a href="#news" className={`nav-link whitespace-nowrap ${activeSection === 'news' ? 'active' : ''}`}>Latest News</a>
-              <a href="#contact" className={`nav-link whitespace-nowrap ${activeSection === 'contact' ? 'active' : ''}`}>Contact</a>
+              {navLinks.map((link) => (
+                <a 
+                  key={link.id}
+                  href={link.href} 
+                  className={`nav-link whitespace-nowrap ${activeSection === link.id ? 'active' : ''}`}
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
             <div className="flex items-center space-x-4 ml-4">
               <button
