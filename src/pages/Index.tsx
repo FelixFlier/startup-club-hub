@@ -8,29 +8,35 @@ const Index = () => {
   const [email, setEmail] = useState("");
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [language, setLanguage] = useState("en");
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark"); // Dark mode als Standard
   const [showGetInTouchModal, setShowGetInTouchModal] = useState(false);
   const [showApplyModal, setShowApplyModal] = useState(false);
   const [applyPosition, setApplyPosition] = useState("");
   const [activeSection, setActiveSection] = useState("vision");
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
-  // Refs for the sections
+  // Refs für die Sektionen
   const visionRef = useRef<HTMLDivElement>(null);
   const activitiesRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+  const eventsRef = useRef<HTMLDivElement>(null);
+  const faqRef = useRef<HTMLDivElement>(null);
+  const newsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
       
-      // Scrollspy logic
-      const scrollPosition = window.scrollY + 200; // Offset for better UX
+      // Scrollspy Logik
+      const scrollPosition = window.scrollY + 200; // Offset für bessere UX
       
       const sections = [
         { id: "vision", ref: visionRef },
         { id: "activities", ref: activitiesRef },
-        { id: "contact", ref: contactRef }
+        { id: "contact", ref: contactRef },
+        { id: "events", ref: eventsRef },
+        { id: "faq", ref: faqRef },
+        { id: "news", ref: newsRef }
       ];
       
       for (const section of sections) {
@@ -51,6 +57,9 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
+    // Dark Mode als Standard setzen
+    document.documentElement.classList.add("dark");
+    
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -125,8 +134,8 @@ const Index = () => {
       url: "https://www.utn.se"
     },
     {
-      name: "Uppsala Universitet",
-      logo: "/lovable-uploads/c73b454b-f339-43f9-b9a1-cab3b744fa7b.png",
+      name: "Uppsala Universitet INVEST AB",
+      logo: "/lovable-uploads/45586792-f437-43d9-90de-b74feb9c55bf.png", // Neues Logo
       url: "https://uuinvest.se/en/"
     }
   ];
@@ -254,13 +263,16 @@ const Index = () => {
         </div>
       )}
 
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl glass-effect z-50 rounded-full shadow-lg">
-        <div className="container mx-auto px-6 py-3">
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl glass-effect z-50 rounded-full shadow-lg">
+        <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <div className="flex gap-4 md:gap-8 w-full justify-center">
-              <a href="#vision" className={`nav-link ${activeSection === 'vision' ? 'active' : ''}`}>Vision</a>
-              <a href="#activities" className={`nav-link ${activeSection === 'activities' ? 'active' : ''}`}>Activities</a>
-              <a href="#contact" className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}>Contact</a>
+            <div className="flex gap-3 md:gap-6 w-full justify-center text-sm md:text-base overflow-x-auto no-scrollbar">
+              <a href="#vision" className={`nav-link whitespace-nowrap ${activeSection === 'vision' ? 'active' : ''}`}>Vision</a>
+              <a href="#activities" className={`nav-link whitespace-nowrap ${activeSection === 'activities' ? 'active' : ''}`}>Activities</a>
+              <a href="#events" className={`nav-link whitespace-nowrap ${activeSection === 'events' ? 'active' : ''}`}>Upcoming Events</a>
+              <a href="#faq" className={`nav-link whitespace-nowrap ${activeSection === 'faq' ? 'active' : ''}`}>FAQ</a>
+              <a href="#news" className={`nav-link whitespace-nowrap ${activeSection === 'news' ? 'active' : ''}`}>Latest News</a>
+              <a href="#contact" className={`nav-link whitespace-nowrap ${activeSection === 'contact' ? 'active' : ''}`}>Contact</a>
             </div>
             <div className="flex items-center space-x-4 ml-4">
               <button
@@ -349,6 +361,96 @@ const Index = () => {
         </div>
       </section>
 
+      <section id="events" ref={eventsRef} className="py-20 px-4 bg-white-section">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Upcoming Events</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {upcomingEvents.map((event, index) => (
+              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 dark:bg-secondary">
+                <div className="flex items-center gap-3 mb-4">
+                  <Calendar className="text-createu-orange" size={24} />
+                  <div className="text-sm text-foreground dark:text-gray-400">{event.date}</div>
+                </div>
+                <h3 className="text-xl font-semibold mb-2 font-montserrat text-foreground">{event.title}</h3>
+                <p className="text-foreground">{event.description}</p>
+                <button className="mt-4 text-createu-orange hover:underline hover:text-opacity-80 flex items-center gap-2 transition-colors btn-micro-bounce">
+                  <CalendarCheck size={20} />
+                  Register Now
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" ref={faqRef} className="py-20 px-4 bg-background">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">FAQ</h2>
+          <div className="max-w-3xl mx-auto">
+            {faqItems.map((item, index) => (
+              <div key={index} className="faq-item">
+                <div 
+                  className="faq-question"
+                  onClick={() => toggleFaq(index)}
+                >
+                  <h3 className="text-xl font-semibold font-montserrat text-foreground">{item.question}</h3>
+                  <button className="text-createu-orange p-1 rounded-full hover:bg-background/30 transition-colors">
+                    {expandedFaq === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  </button>
+                </div>
+                {expandedFaq === index && (
+                  <div className="faq-answer animate-in fade-in slide-in duration-300">
+                    <p className="text-foreground">{item.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="news" ref={newsRef} className="py-20 px-4 bg-white-section">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Latest News</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {blogPosts.map((post, index) => (
+              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 dark:bg-secondary">
+                <div className="text-sm text-foreground mb-2 dark:text-gray-400">{post.date}</div>
+                <h3 className="text-xl font-semibold mb-3 font-montserrat text-foreground">{post.title}</h3>
+                <p className="text-foreground mb-4">{post.excerpt}</p>
+                <button className="text-createu-orange hover:underline hover:text-opacity-80 transition-colors btn-micro-bounce">Read More →</button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 bg-background">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Our Partners</h2>
+          <div className="grid md:grid-cols-3 gap-8 items-center">
+            {partners.map((partner, index) => (
+              <a
+                key={index}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-white dark:bg-secondary/30 p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center h-48 border border-transparent hover:border-createu-orange/20"
+              >
+                <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-h-32 max-w-full object-contain transition-all duration-300 group-hover:scale-105 dark:brightness-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent dark:from-secondary/10 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="contact" ref={contactRef} className="py-20 bg-white-section">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Contact</h2>
@@ -394,93 +496,6 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-white-section">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Our Partners</h2>
-          <div className="grid md:grid-cols-3 gap-8 items-center">
-            {partners.map((partner, index) => (
-              <a
-                key={index}
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center h-40 dark:bg-secondary"
-              >
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="max-h-28 max-w-full object-contain dark:brightness-110"
-                />
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-background">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Upcoming Events</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {upcomingEvents.map((event, index) => (
-              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 dark:bg-secondary">
-                <div className="flex items-center gap-3 mb-4">
-                  <Calendar className="text-createu-orange" size={24} />
-                  <div className="text-sm text-foreground dark:text-gray-400">{event.date}</div>
-                </div>
-                <h3 className="text-xl font-semibold mb-2 font-montserrat text-foreground">{event.title}</h3>
-                <p className="text-foreground">{event.description}</p>
-                <button className="mt-4 text-createu-orange hover:underline hover:text-opacity-80 flex items-center gap-2 transition-colors btn-micro-bounce">
-                  <CalendarCheck size={20} />
-                  Register Now
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-white-section">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">FAQ</h2>
-          <div className="max-w-3xl mx-auto">
-            {faqItems.map((item, index) => (
-              <div key={index} className="faq-item">
-                <div 
-                  className="faq-question"
-                  onClick={() => toggleFaq(index)}
-                >
-                  <h3 className="text-xl font-semibold font-montserrat text-foreground">{item.question}</h3>
-                  <button className="text-createu-orange p-1 rounded-full hover:bg-background/30 transition-colors">
-                    {expandedFaq === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                  </button>
-                </div>
-                {expandedFaq === index && (
-                  <div className="faq-answer animate-in fade-in slide-in duration-300">
-                    <p className="text-foreground">{item.answer}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-background">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-foreground mb-12 font-montserrat">Latest News</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {blogPosts.map((post, index) => (
-              <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 dark:bg-secondary">
-                <div className="text-sm text-foreground mb-2 dark:text-gray-400">{post.date}</div>
-                <h3 className="text-xl font-semibold mb-3 font-montserrat text-foreground">{post.title}</h3>
-                <p className="text-foreground mb-4">{post.excerpt}</p>
-                <button className="text-createu-orange hover:underline hover:text-opacity-80 transition-colors btn-micro-bounce">Read More →</button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <footer className="bg-secondary text-foreground py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-12">
@@ -507,7 +522,7 @@ const Index = () => {
               <ul className="space-y-2">
                 <li><a href="https://www.uic.se" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-createu-orange transition-colors">Uppsala Innovation Centre</a></li>
                 <li><a href="https://www.utn.se" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-createu-orange transition-colors">Uppsala Teknolog- och Naturvetarkår</a></li>
-                <li><a href="https://uuinvest.se/en/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-createu-orange transition-colors">Uppsala Universitet</a></li>
+                <li><a href="https://uuinvest.se/en/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-createu-orange transition-colors">Uppsala Universitet INVEST AB</a></li>
               </ul>
             </div>
             <div>
